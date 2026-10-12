@@ -3,7 +3,7 @@ function t(name,fn){fn();n++;console.log('PASS '+n+' '+name);}
 t('example tariff A',()=>assert.equal(g.annualCost(15000,{rate:24,base:180}),3780));
 t('example tariff B',()=>assert.equal(g.annualCost(15000,{rate:21,base:150}),3300));
 t('example savings',()=>assert.equal(g.compare(3780,3300).savings,480));
-t('dual HT NT same price',()=>assert.equal(g.dualCost({ht:7879.5,nt:8203.7},{htRate:24.11,ntRate:24.11,base:176.87}),4054.56));
+t('dual HT NT same price',()=>assert.equal(g.dualCost({ht:7879.5,nt:8203.7},{htRate:24.11,ntRate:24.11,base:176.87}),4054.53));
 t('dual HT NT different prices',()=>assert.equal(g.dualCost({ht:100,nt:200},{htRate:30,ntRate:20,base:100}),170));
 t('household current projection',()=>assert.equal(g.annualCost(5544.99,{rate:28.18,base:235.25}),1797.83));
 t('heat settlement is debt',()=>assert.equal(g.settle(4217.29,4140),-77.29));
