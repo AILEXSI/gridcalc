@@ -35,7 +35,7 @@ Snapshot der Sites-Version 56d32575a04c46e523ef0aea4fed372b182a1eed vom 12.10.20
 
 - `case001.html`: separat aufrufbares, browserlokales Testlabor mit Wärmepumpe (HT/NT) und Haushalt.
 - `grid-engine.js`: reine, validierte Berechnungen für Einzeltarif, HT/NT, Abrechnungssaldo und Portfolio.
-- `grid-engine.test.js`: 16 Node.js-Assertions; ausführen mit `node grid-engine.test.js`.
+- `grid-engine.test.js`: 33 Node.js-Assertions; ausführen mit `node grid-engine.test.js`.
 - Referenzwerte aus `PLAYBOOK.md` sind anonymisiert. Keine Konten, IBANs, Vertragsnummern oder echten Identitäten im Quelltext.
-- **Nicht implementiert:** Live-Angebote, PDF-Import, echte Kundenakten, SEPA, Anbieterwechsel und externe Schnittstellen. Anbieterstatus bleibt `NOT_VERIFIED`.
+- `fixtures/synthetic-customers.json`: Max, Monday und AISI als rein fiktive Testpersonen, nicht zahlbare Bankplatzhalter, keine Einwilligungen.\n- Auf `case001.html` können getrennte Vergleichspreise für Wärmepumpe (HT/NT) und Haushalt simuliert werden.\n- **Nicht implementiert:** Live-Angebote, PDF-Import, echte Kundenakten, SEPA, Anbieterwechsel und externe Schnittstellen. Anbieterstatus bleibt `NOT_VERIFIED`.
 - Der Zweig ist ein Entwicklungsstand. Erst nach grünen Tests und Review in `main` übernehmen. Die ChatGPT-Sites-Veröffentlichung ist weiterhin separat.
