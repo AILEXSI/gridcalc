@@ -28,4 +28,10 @@ t('case heat current projection',()=>assert.equal(g.case001().heat.currentProjec
 t('case household current projection',()=>assert.equal(g.case001().home.currentProjection,1797.83));
 t('portfolio current projection',()=>assert.equal(g.case001().currentProjection,5852.36));
 t('non-finite tariff rejected',()=>assert.throws(()=>g.annualCost(100,{rate:Infinity,base:100})));
+const fixture=require('./fixtures/synthetic-customers.json');
+t('three synthetic personas',()=>assert.deepEqual(fixture.customers.map(x=>x.id),['MAX','MONDAY','AISI']));
+t('synthetic bank references are not payable',()=>assert.ok(fixture.customers.every(x=>x.bank.iban.includes('NOT-PAYABLE'))));
+t('synthetic personas have no authorization',()=>assert.ok(fixture.customers.every(x=>x.consent==='NOT_GRANTED')));
+t('Max household tariff',()=>{const x=fixture.customers[0];assert.equal(g.annualCost(x.annualKwh,{rate:x.tariff.rateCt,base:x.tariff.baseEur}),1230)});
+t('Monday dual meter tariff',()=>{const x=fixture.customers[1];assert.equal(g.dualCost(x.annualKwh,{htRate:x.tariff.htRateCt,ntRate:x.tariff.ntRateCt,base:x.tariff.baseEur}),2445)});
 console.log(n+' / '+n+' PASS');
