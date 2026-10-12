@@ -16,4 +16,16 @@ t('negative values rejected',()=>assert.throws(()=>g.annualCost(-1,{rate:20,base
 t('invalid dual register rejected',()=>assert.throws(()=>g.dualCost({ht:NaN,nt:0},{htRate:20,ntRate:20,base:0})));
 t('missing portfolio rejected',()=>assert.throws(()=>g.portfolio([])));
 t('case stays NOT_VERIFIED',()=>assert.equal(g.case001().offerStatus,'NOT_VERIFIED'));
+t('spoofed offer still unverified',()=>assert.equal(g.offerStatus({verified:true,source:'example',checkedAt:'2026-10-12',scope:'home'}),'NOT_VERIFIED'));
+t('invalid comparison rejected',()=>assert.throws(()=>g.compare(-1,200)));
+t('no false savings when equal',()=>assert.equal(g.compare(500,500).savings,0));
+t('zero usage still has standing charge',()=>assert.equal(g.annualCost(0,{rate:22,base:120}),120));
+t('zero dual usage still has standing charge',()=>assert.equal(g.dualCost({ht:0,nt:0},{htRate:22,ntRate:18,base:150}),150));
+t('different HT NT usage weighted',()=>assert.equal(g.dualCost({ht:1000,nt:2000},{htRate:25,ntRate:15,base:100}),650));
+t('higher alternative cost negative savings',()=>assert.equal(g.compare(100,120).savings,-20));
+t('no credit counted as tariff savings',()=>assert.equal(g.case001().home.settlement,1400.31));
+t('case heat current projection',()=>assert.equal(g.case001().heat.currentProjection,4054.53));
+t('case household current projection',()=>assert.equal(g.case001().home.currentProjection,1797.83));
+t('portfolio current projection',()=>assert.equal(g.case001().currentProjection,5852.36));
+t('non-finite tariff rejected',()=>assert.throws(()=>g.annualCost(100,{rate:Infinity,base:100})));
 console.log(n+' / '+n+' PASS');
