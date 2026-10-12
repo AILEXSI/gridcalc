@@ -1,0 +1,66 @@
+{
+  "schema": "aisi-grid-synthetic-fixtures-v1",
+  "disclaimer": "ALL RECORDS ARE FICTIONAL. NO REAL BANK DETAILS OR SWITCHING AUTHORITY.",
+  "customers": [
+    {
+      "id": "MAX",
+      "type": "household",
+      "contract": "TEST-MAX-001",
+      "meter": "SIM-MAX-01",
+      "annualKwh": 3500,
+      "tariff": {
+        "rateCt": 30,
+        "baseEur": 180
+      },
+      "bank": {
+        "iban": "TEST-IBAN-MAX-NOT-PAYABLE",
+        "mandate": "SIMULATED_ONLY"
+      },
+      "consent": "NOT_GRANTED"
+    },
+    {
+      "id": "MONDAY",
+      "type": "heat_pump_dual",
+      "contract": "TEST-MONDAY-002",
+      "meter": "SIM-MON-02",
+      "annualKwh": {
+        "ht": 4200,
+        "nt": 6100
+      },
+      "tariff": {
+        "htRateCt": 25,
+        "ntRateCt": 20,
+        "baseEur": 175
+      },
+      "bank": {
+        "iban": "TEST-IBAN-MONDAY-NOT-PAYABLE",
+        "mandate": "SIMULATED_ONLY"
+      },
+      "consent": "NOT_GRANTED"
+    },
+    {
+      "id": "AISI",
+      "type": "dual_contract",
+      "contracts": [
+        "TEST-AISI-HEAT",
+        "TEST-AISI-HOME"
+      ],
+      "meters": [
+        "SIM-AISI-HTNT",
+        "SIM-AISI-HOME"
+      ],
+      "annualKwh": {
+        "heat": {
+          "ht": 7879.5,
+          "nt": 8203.7
+        },
+        "home": 5544.99
+      },
+      "bank": {
+        "iban": "TEST-IBAN-AISI-NOT-PAYABLE",
+        "mandate": "SIMULATED_ONLY"
+      },
+      "consent": "NOT_GRANTED"
+    }
+  ]
+}
