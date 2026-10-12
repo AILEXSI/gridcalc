@@ -12,9 +12,9 @@
     return round(ht*nonnegative(tariff.htRate,'HT rate')/100+nt*nonnegative(tariff.ntRate,'NT rate')/100+nonnegative(tariff.base,'base'));
   }
   function settle(invoice,paid){return round(nonnegative(paid,'paid')-nonnegative(invoice,'invoice'));}
-  function compare(current,alternative){return {current:round(current),alternative:round(alternative),savings:round(current-alternative),monthly:round((current-alternative)/12)};}
+  function compare(current,alternative){nonnegative(current,'current cost');nonnegative(alternative,'alternative cost');return {current:round(current),alternative:round(alternative),savings:round(current-alternative),monthly:round((current-alternative)/12)};}
   function portfolio(sites){if(!Array.isArray(sites)||!sites.length)throw Error('No sites');return round(sites.reduce((s,site)=>s+nonnegative(site,'site cost'),0));}
-  function offerStatus(offer){return offer&&offer.verified===true&&offer.source&&offer.checkedAt&&offer.scope?'VERIFIED':'NOT_VERIFIED';}
+  function offerStatus(_offer){return 'NOT_VERIFIED';} // Client-supplied metadata cannot prove external offer verification.
   const CASE001=Object.freeze({
     heat:{ht:7879.50,nt:8203.70,invoice:4217.29,paid:4140.00,rate:24.11,base:176.87,termination:'2027-04-28'},
     home:{kwh:5544.99,invoice:1899.69,paid:3300.00,rate:28.18,base:235.25,termination:'2027-05-31'}
