@@ -23,7 +23,7 @@
     else {
       if (!['POSTCODE', 'GRID_AREA', 'BASIC_SUPPLY_AREA', 'NATIONAL', 'UNKNOWN'].includes(record.geography.scope)) errors.push('geography.scope is invalid');
       if (!Array.isArray(record.geography.postcodes)) errors.push('geography.postcodes must be an array');
-      else if (record.geography.postcodes.some(p => !new RegExp('^[0-9]{5}$').test(p))) errors.push('each postcode must be a five-digit string');
+      else if (record.geography.postcodes.some(p => typeof p !== 'string' || !/^[0-9]{5}$/.test(p))) errors.push('each postcode must be a five-digit string');
       if (!nonEmpty(record.geography.coverageBasis)) errors.push('geography.coverageBasis is required');
     }
     if (!isObject(record.pricing)) errors.push('pricing is required');
