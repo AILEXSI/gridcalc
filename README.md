@@ -37,5 +37,15 @@ Snapshot der Sites-Version 56d32575a04c46e523ef0aea4fed372b182a1eed vom 12.10.20
 - `grid-engine.js`: reine, validierte Berechnungen für Einzeltarif, HT/NT, Abrechnungssaldo und Portfolio.
 - `grid-engine.test.js`: 33 Node.js-Assertions; ausführen mit `node grid-engine.test.js`.
 - Referenzwerte aus `PLAYBOOK.md` sind anonymisiert. Keine Konten, IBANs, Vertragsnummern oder echten Identitäten im Quelltext.
-- `fixtures/synthetic-customers.json`: Max, Monday und AISI als rein fiktive Testpersonen, nicht zahlbare Bankplatzhalter, keine Einwilligungen.\n- Auf `case001.html` können getrennte Vergleichspreise für Wärmepumpe (HT/NT) und Haushalt simuliert werden.\n- **Nicht implementiert:** Live-Angebote, PDF-Import, echte Kundenakten, SEPA, Anbieterwechsel und externe Schnittstellen. Anbieterstatus bleibt `NOT_VERIFIED`.
+- `fixtures/synthetic-customers.json`: Max, Monday und AISI als rein fiktive Testpersonen, nicht zahlbare Bankplatzhalter, keine Einwilligungen.
+- Auf `case001.html` können getrennte Vergleichspreise für Wärmepumpe (HT/NT) und Haushalt simuliert werden.
+- **Nicht implementiert:** Live-Angebote, PDF-Import, echte Kundenakten, SEPA, Anbieterwechsel und externe Schnittstellen. Anbieterstatus bleibt `NOT_VERIFIED`.
 - Der Zweig ist ein Entwicklungsstand. Erst nach grünen Tests und Review in `main` übernehmen. Die ChatGPT-Sites-Veröffentlichung ist weiterhin separat.
+
+## Tarif-Provenance (Entwicklungszweig)
+
+- `tariff-provenance.js` validiert die Struktur und Mindestmetadaten eines Tarifdatensatzes, inklusive Quelle, Abrufzeitpunkt, Preisannahmen, Gebiet und Verifikationsstatus.
+- `tariff-provenance.test.js` enthält Tests für ungültige URLs, Postleitzahlen, Preise, Statuswerte, fehlende Verifikationsbelege und abgelaufene Datensätze.
+- `docs/TARIFF_DATA_CONTRACT.md` beschreibt Statussemantik, Datenvertrag und die Freigabesperre vor einer echten Tarifvergleichsintegration.
+- Lokal prüfen: `node grid-engine.test.js && node tariff-provenance.test.js`.
+- **Wichtige Grenze:** Die Metadatenprüfung belegt nicht, dass ein Angebot echt, aktuell oder an einer Lieferstelle verfügbar ist. Der Validator ist noch nicht in die Browser-Vergleichsoberfläche integriert; Live-Angebote und belastbare Postleitzahlabdeckung fehlen weiterhin.
