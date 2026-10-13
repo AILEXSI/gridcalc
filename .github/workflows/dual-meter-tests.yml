@@ -1,4 +1,4 @@
-name: GridCalc dual-meter tests
+name: GridCalc tests
 on:
   push:
     branches: [main, feat/v0.2-dual-meter-case001]
@@ -14,3 +14,6 @@ jobs:
       - run: node --check grid-engine.js
       - run: node --check grid-engine.test.js
       - run: node grid-engine.test.js
+      - run: node --check tariff-provenance.js
+      - run: node --check tariff-provenance.test.js
+      - run: node tariff-provenance.test.js
